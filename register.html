@@ -1,0 +1,67 @@
+<html>
+  <head>
+    <title>Register</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      form {
+        padding: 15px 30px 30px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      input {
+        width: 100%;
+        margin: 10px 0;
+        padding: 10px;
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body>
+    <form id="registerForm">
+      <h2>Register</h2>
+      <input type="text" id="name" placeholder="Name" required />
+      <input type="text" id="username" placeholder="Username" required />
+      <input type="password" id="password" placeholder="Password" required />
+      <input
+        type="password"
+        id="confirmPassword"
+        placeholder="Confirm Password"
+        required
+      />
+      <button type="submit">Register</button>
+    </form>
+
+    <script>
+      document
+        .getElementById("registerForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+          const name = document.getElementById("name").value;
+          const username = document.getElementById("username").value;
+          const password = document.getElementById("password").value;
+          const confirmPassword =
+            document.getElementById("confirmPassword").value;
+
+          if (password !== confirmPassword) {
+            alert("Passwords do not match");
+            return;
+          }
+
+          const user = {
+            name: name,
+            username: username,
+            password: password,
+          };
+
+          localStorage.setItem(username, JSON.stringify(user));
+          alert("Registration successful! Please login.");
+          window.location.href = "login.html";
+        });
+    </script>
+  </body>
+</html>
